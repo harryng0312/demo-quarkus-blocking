@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'io.quarkus:quarkus-container-image-docker'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusCamelArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-arc'
+//    implementation 'io.quarkus:quarkus-resteasy-reactive'
+
+    implementation "io.quarkus:quarkus-vertx"
+    implementation "io.quarkus:quarkus-hibernate-validator"
+
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-resteasy-jaxb'
+    implementation "io.quarkus:quarkus-resteasy-jsonb"
+    implementation "io.quarkus:quarkus-resteasy-qute"
+
+    implementation "io.quarkus:quarkus-cache"
+    implementation "io.quarkus:quarkus-jdbc-postgresql"
+    implementation "io.quarkus:quarkus-hibernate-orm-panache"
+
+    implementation "org.mapstruct:mapstruct:${mapstructVer}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVer}"
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'org.harryng.demo'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
