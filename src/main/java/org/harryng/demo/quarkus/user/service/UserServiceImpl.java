@@ -33,6 +33,7 @@ public class UserServiceImpl extends AbstractSearchableService<Long, UserImpl> i
 
     static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    @Inject
     protected UserPersistence userPersistence;
 
     @Inject

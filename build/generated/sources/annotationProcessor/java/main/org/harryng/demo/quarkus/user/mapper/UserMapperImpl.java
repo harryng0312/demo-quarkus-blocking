@@ -7,7 +7,7 @@ import org.harryng.demo.quarkus.user.entity.UserImpl;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-18T17:04:22+0700",
+    date = "2022-05-18T17:48:39+0700",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.4.1.jar, environment: Java 11.0.15 (Oracle Corporation)"
 )
 @ApplicationScoped

@@ -13,6 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
+import java.util.HashMap;
 
 @ApplicationScoped
 // @RequestScoped
@@ -31,7 +32,7 @@ public class UserController extends AbstractController {
         try {
             var strBuilder = new StringBuilder();
 //            strBuilder.append(getServerRequest().uri()).append("\n");
-            var user = userService.getById(SessionHolder.createAnonymousSession(), id, Collections.emptyMap());
+            var user = userService.getById(SessionHolder.createAnonymousSession(), id, new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {
             logger.error("", e);
@@ -47,7 +48,7 @@ public class UserController extends AbstractController {
             var strBuilder = new StringBuilder();
 //            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.add(SessionHolder.createAnonymousSession(),
-                    getObjectMapper().readValue(reqBodyStr, UserImpl.class), Collections.emptyMap());
+                    getObjectMapper().readValue(reqBodyStr, UserImpl.class), new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {
             logger.error("", e);
@@ -63,7 +64,7 @@ public class UserController extends AbstractController {
             var strBuilder = new StringBuilder();
 //            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.edit(SessionHolder.createAnonymousSession(),
-                    getObjectMapper().readValue(reqBodyStr, UserImpl.class), Collections.emptyMap());
+                    getObjectMapper().readValue(reqBodyStr, UserImpl.class), new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {
             logger.error("", e);
@@ -78,7 +79,7 @@ public class UserController extends AbstractController {
         try {
             var strBuilder = new StringBuilder();
 //            strBuilder.append(getServerRequest().uri()).append("\n");
-            var user = userService.remove(SessionHolder.createAnonymousSession(), id, Collections.emptyMap());
+            var user = userService.remove(SessionHolder.createAnonymousSession(), id, new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {
             logger.error("", e);
