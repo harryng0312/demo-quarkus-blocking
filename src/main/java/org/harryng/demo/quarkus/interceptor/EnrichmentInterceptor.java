@@ -17,12 +17,12 @@ import java.util.Map;
 import static javax.interceptor.Interceptor.Priority.APPLICATION;
 
 @Priority(APPLICATION + 200)
-@Enriched
-@Interceptor
+//@Enriched
+//@Interceptor
 public class EnrichmentInterceptor {
     static Logger logger = LoggerFactory.getLogger(EnrichmentInterceptor.class);
 
-    @Inject
+//    @Inject
     protected RoutingContext ctx;
 
     @AroundInvoke

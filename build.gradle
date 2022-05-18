@@ -23,6 +23,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy-jaxb'
     implementation "io.quarkus:quarkus-resteasy-jsonb"
     implementation "io.quarkus:quarkus-resteasy-qute"
+    implementation "io.quarkus:quarkus-undertow"
 
     implementation "io.quarkus:quarkus-cache"
     implementation "io.quarkus:quarkus-jdbc-postgresql"

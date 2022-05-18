@@ -6,6 +6,8 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.mutiny.core.Vertx;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -15,27 +17,20 @@ public abstract class AbstractController {
     Vertx vertx;
     @Inject
     ObjectMapper objectMapper;
-//    @Inject
-//    HttpRequest serverRequest;
-//    @Inject
-//    HttpResponse serverResponse;
-    // @Inject
-    // protected RoutingContext routingContext;
-
-//    @Inject
-//    protected Uni<Mutiny.Session> transSession;
-
-//    public HttpRequest getServerRequest() {
-//        return serverRequest;
-//    }
 //
-//    public HttpResponse getServerResponse() {
-//        return serverResponse;
-//    }
+    @Inject
+    HttpServletRequest httpServletRequest;
 
-    // public RoutingContext getRoutingContext(){
-        // return routingContext;
-    // }
+    @Inject
+    HttpServletResponse httpServletResponse;
+
+    public HttpServletRequest getHttpServletRequest() {
+        return httpServletRequest;
+    }
+
+    public HttpServletResponse getHttpServletResponse() {
+        return httpServletResponse;
+    }
 
     public Vertx getVertx() {
         return vertx;

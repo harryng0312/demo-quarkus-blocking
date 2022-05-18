@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.HashMap;
 
 @ApplicationScoped
-// @RequestScoped
 @Path("/user")
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -30,8 +29,6 @@ public class UserController extends AbstractController {
     public Response getUserByIdBlock(@QueryParam("id") long id) {
         var rs = Response.ok().build();
         try {
-            var strBuilder = new StringBuilder();
-//            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.getById(SessionHolder.createAnonymousSession(), id, new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {
@@ -45,8 +42,6 @@ public class UserController extends AbstractController {
     public Response addUser(String reqBodyStr) throws RuntimeException, Exception {
         var rs = Response.ok().build();
         try {
-            var strBuilder = new StringBuilder();
-//            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.add(SessionHolder.createAnonymousSession(),
                     getObjectMapper().readValue(reqBodyStr, UserImpl.class), new HashMap<>());
             rs = Response.ok().entity(user).build();
@@ -61,8 +56,6 @@ public class UserController extends AbstractController {
     public Response editUser(String reqBodyStr) throws RuntimeException, Exception {
         var rs = Response.ok().build();
         try {
-            var strBuilder = new StringBuilder();
-//            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.edit(SessionHolder.createAnonymousSession(),
                     getObjectMapper().readValue(reqBodyStr, UserImpl.class), new HashMap<>());
             rs = Response.ok().entity(user).build();
@@ -77,8 +70,6 @@ public class UserController extends AbstractController {
     public Response removeUser(@QueryParam("id") long id) throws RuntimeException, Exception {
         var rs = Response.ok().build();
         try {
-            var strBuilder = new StringBuilder();
-//            strBuilder.append(getServerRequest().uri()).append("\n");
             var user = userService.remove(SessionHolder.createAnonymousSession(), id, new HashMap<>());
             rs = Response.ok().entity(user).build();
         } catch (Exception e) {

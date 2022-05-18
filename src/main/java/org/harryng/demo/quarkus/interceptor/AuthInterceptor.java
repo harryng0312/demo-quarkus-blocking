@@ -11,12 +11,12 @@ import javax.interceptor.InvocationContext;
 import static javax.interceptor.Interceptor.Priority.APPLICATION;
 
 @Priority(APPLICATION + 500)
-@Authenticated
-@Interceptor
+//@Authenticated
+//@Interceptor
 public class AuthInterceptor {
     static Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
-    @AroundInvoke
+//    @AroundInvoke
     protected Object invoke(InvocationContext context) throws Exception {
 //        logger.info("+++++");
         Object ret = context.proceed();

@@ -1,5 +1,6 @@
 package org.harryng.demo.quarkus.user.service;
 
+import io.quarkus.panache.common.Sort;
 import io.smallrye.mutiny.Uni;
 import org.harryng.demo.quarkus.base.service.AbstractSearchableService;
 import org.harryng.demo.quarkus.interceptor.Authenticated;
@@ -9,7 +10,6 @@ import org.harryng.demo.quarkus.user.mapper.UserMapper;
 import org.harryng.demo.quarkus.user.persistence.UserPersistence;
 import org.harryng.demo.quarkus.util.SessionHolder;
 import org.harryng.demo.quarkus.util.page.PageInfo;
-import org.harryng.demo.quarkus.util.page.Sort;
 import org.harryng.demo.quarkus.validation.ValidationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,7 +92,7 @@ public class UserServiceImpl extends AbstractSearchableService<Long, UserImpl> i
     @Transactional(Transactional.TxType.NOT_SUPPORTED)
     public Uni<UserImpl> getByUsername(SessionHolder sessionHolder, String username, Map<String, Object> extras) throws RuntimeException, Exception {
         UserImpl result = null;
-        var pageInfo = new PageInfo(0, 5, 0, Sort.by(Sort.Direction.ASC, "id")); //PageRequest.of(0, 5, Sort.Direction.ASC, "id");
+        var pageInfo = new PageInfo(0, 5, Sort.ascending("id_") );
         var jpql = "select u from " + UserImpl.class.getCanonicalName() + " u where u.username = :username";
         var params = new HashMap<String, Object>();
         params.put("username", username);

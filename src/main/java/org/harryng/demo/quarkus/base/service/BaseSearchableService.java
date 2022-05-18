@@ -1,30 +1,37 @@
 package org.harryng.demo.quarkus.base.service;
 
+import io.quarkus.panache.common.Sort;
 import org.harryng.demo.quarkus.base.entity.BaseEntity;
 import org.harryng.demo.quarkus.util.SessionHolder;
-import org.harryng.demo.quarkus.util.page.Page;
+import org.harryng.demo.quarkus.util.page.PagedResult;
 import org.harryng.demo.quarkus.util.page.PageInfo;
 
-import io.smallrye.mutiny.Uni;
-
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 public interface BaseSearchableService<Id extends Serializable, T extends BaseEntity<Id>> extends BaseService<Id, T> {
 
-    public Uni<Long> findByConditions(
+    long countByConditions(
             SessionHolder sessionHolder,
-            String countJpql,
+            String condition,
             Map<String, Object> params,
             Map<String, Object> extras
     ) throws RuntimeException, Exception;
 
-    public Uni<Page<T>> findByConditions(
+    List<T> findByConditions(
             SessionHolder sessionHolder,
-            String queryJpql,
+            String condition,
+            Sort sort,
             Map<String, Object> params,
+            Map<String, Object> extras
+    ) throws RuntimeException, Exception;
+
+    PagedResult<T> findByConditionPaged(
+            SessionHolder sessionHolder,
+            String condition,
             PageInfo pageInfo,
-            long total,
+            Map<String, Object> params,
             Map<String, Object> extras
     ) throws RuntimeException, Exception;
 }
