@@ -1,29 +1,29 @@
 version: '3.8'
 services:
   app:
-    image: harryng/demo-quarkus
+    image: 'harryng/demo-quarkus-blocking:1.0-SNAPSHOT'
     read_only: true
-    hostname: demo-quarkus
-    container_name: demo-quarkus
-    # command: "ls -l ."
+    hostname: demo-quarkus-blocking
+    container_name: demo-quarkus-blocking
     deploy:
       resources:
         limits:
           cpus: 1
           memory: 1g
     ports:
-      - "9090:8080"
+      - '9191:8080'
     expose:
       - '8080'
     environment:
       - TZ=Asia/Ho_Chi_Minh
     volumes:
-      - ./tmp:/tmp
-      - ./log:/log
+      - './tmp:/tmp'
+      - './log:/log'
+      - './config:/deployments/config'
     networks:
-      external-net:
+      external-net: null
     labels:
-      com.docker.lb.hosts: demo-quarkus
+      com.docker.lb.hosts: demo-quarkus-blocking
 networks:
   external-net:
     internal: false
